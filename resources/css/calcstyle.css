@@ -1,0 +1,24 @@
+html, body, .fullHeight {
+  height: 100%;
+}
+
+button {
+  width: 3em;
+  height: 3em;
+  padding: 0;
+}
+
+div[class^="row"] {
+  display: flex;
+}
+
+input[type="text"] {
+  text-align: right;
+}
+
+.calculatorButtons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
