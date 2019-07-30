@@ -1,3 +1,6 @@
+<!-- Influenced by:  -->
+<!-- https://romalenskiy.github.io/calculator/ -->
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -8,33 +11,38 @@
     <script defer src="./resources/js/calcscript.js"></script>
   </head>
   <body>
-    <div class="calculatorButtons fullHeight">
+    <div class="calculator">
       <div class="row-0">
-        <input type="text" id="calculatorScreen" name="Calculator Screen">
+        <div id="calculatorInput">
+          <input type="text" id="calculatorInputField" name="Calculator Input" readonly>
+        </div>
+        <div id="calculatorOutput">
+          <input type="text" id="calculatorOutputField" name="Calculator Output" readonly>
+        </div>
       </div>
       <div class="row-1">
-        <button type="button" name="7 Button" value="7">7</button>
-        <button type="button" name="8 Button" value="8">8</button>
-        <button type="button" name="9 Button" value="9">9</button>
-        <button type="button" name="Division Button" value="/">/</button>
+        <div class="calculatorNumber btn" name="7 Button" data-action="7">7</div>
+        <div class="calculatorNumber btn" name="8 Button" data-action="8">8</div>
+        <div class="calculatorNumber btn" name="9 Button" data-action="9">9</div>
+        <div class="calculatorOperator btn" name="division Button" data-action="/">&divide;</div>
       </div>
       <div class="row-2">
-        <button type="button" name="4 Button" value="4">4</button>
-        <button type="button" name="5 Button" value="5">5</button>
-        <button type="button" name="6 Button" value="6">6</button>
-        <button type="button" name="Multiplication Button" value="*">*</button>
+        <div class="calculatorNumber btn" name="4 Button" data-action="4">4</div>
+        <div class="calculatorNumber btn" name="5 Button" data-action="5">5</div>
+        <div class="calculatorNumber btn" name="6 Button" data-action="6">6</div>
+        <div class="calculatorOperator btn" name="Multiplication Button" data-action="*">&times;</div>
       </div>
       <div class="row-3">
-        <button type="button" name="1 Button" value="1">1</button>
-        <button type="button" name="2 Button" value="2">2</button>
-        <button type="button" name="3 Button" value="3">3</button>
-        <button type="button" name="Subtraction Button" value="-">-</button>
+        <div class="calculatorNumber btn" name="1 Button" data-action="1">1</div>
+        <div class="calculatorNumber btn" name="2 Button" data-action="2">2</div>
+        <div class="calculatorNumber btn" name="3 Button" data-action="3">3</div>
+        <div class="calculatorOperator btn" name="Subtraction Button" data-action="-">-</div>
       </div>
       <div class="row-4">
-        <button type="button" name="Dot Button" value=".">.</button>
-        <button type="button" name="0 Button" value="0">0</button>
-        <button type="button" name="Equals Button" value="=">=</button>
-        <button type="button" name="Addition Button" value="+">+</button>
+        <div class="calculatorNumber btn" name="Dot Button" data-action=".">.</div>
+        <div class="calculatorNumber btn" name="0 Button" data-action="0">0</div>
+        <div class="calculatorNumber btn" name="Dot Button" data-action="del">DEL</div>
+        <div class="calculatorOperator btn" name="Addition Button" data-action="+">+</div>
       </div>
     </div>
   </body>

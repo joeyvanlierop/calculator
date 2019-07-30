@@ -1,11 +1,37 @@
-html, body, .fullHeight {
+:root {
+  --buttonSize: 5rem;
+}
+
+body {
+  font-family: arial;
+}
+
+html, body {
   height: 100%;
 }
 
-button {
-  width: 3em;
-  height: 3em;
-  padding: 0;
+.calculator {
+  display: inline-flex;
+  overflow: hidden;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.calculatorNumber, .calculatorOperator {
+  text-align: center;
+  vertical-align: middle;
+  width: var(--buttonSize);
+  height: var(--buttonSize);
+  line-height: var(--buttonSize);
+}
+
+.calculatorNumber {
+  background-color: lightgray;
+}
+
+.calculatorOperator {
+  background-color: orange;
 }
 
 div[class^="row"] {
@@ -14,11 +40,4 @@ div[class^="row"] {
 
 input[type="text"] {
   text-align: right;
-}
-
-.calculatorButtons {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
 }
