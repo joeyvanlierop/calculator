@@ -32,11 +32,6 @@ function updateOutput() {
   outputField.value = evaluateEquation(inputField.value.toString(), 3);
 }
 
-function clearScreen() {
-  inputField.value = "Hi";
-  outputField.value = "";
-}
-
 function add(number1: number, number2: number): number {
   return number1 + number2;
 }
