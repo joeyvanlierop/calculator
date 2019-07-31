@@ -1,9 +1,8 @@
-const operators: string[] = ['*', '/', '+', '-']
-
 let inputField = document.getElementById("calculatorInputField") as HTMLInputElement;
 let outputField = document.getElementById("calculatorOutputField") as HTMLInputElement;
 let calculatorButtons = document.getElementsByClassName("btn") as HTMLCollectionOf<HTMLInputElement>;
 
+// @ts-ignore
 for(let calculatorButton of calculatorButtons) {
   calculatorButton.addEventListener("click", function() {
     updateInput(calculatorButton.dataset.action);
@@ -34,7 +33,7 @@ function updateOutput() {
 }
 
 function clearScreen() {
-  inputField.value = "";
+  inputField.value = "Hi";
   outputField.value = "";
 }
 
@@ -74,6 +73,7 @@ function operate(number1: number, number2:  number, operator: string): number | 
 }
 
 function splitEquation(input: string): string[] {
+  const operators: string[] = ['*', '/', '+', '-'];
   let equationArray: string[] = [];
   let equationArrayIndex = 0;
 
@@ -81,12 +81,10 @@ function splitEquation(input: string): string[] {
     if(operators.indexOf(char) != -1) {
       equationArray.push(char);
       equationArrayIndex += 2;
-    } else {
-    if(equationArray[equationArrayIndex] == undefined) {
+    } else if(equationArray[equationArrayIndex] == undefined) {
       equationArray.push(char);
     } else {
       equationArray[equationArrayIndex] += char;
-    }
     }
   }
 
@@ -102,13 +100,21 @@ function evaluateEquation(equationInput: (string|number)[] | string, decimalLeng
     return evaluateEquation(splitEquation(equationInput), decimalLength);
   }
 
+  let operatorOrder = [["*", "/"],["+", "-"]];
+
   let index: number = -1;
 
-  for(let operator of operators) {
-    index = equationInput.indexOf(operator);
-    
+  for(let operators of operatorOrder) {
+    for(let operator of operators) {
+      const operatorIndex = equationInput.indexOf(operator);
+
+      if(operatorIndex > 0 && (operatorIndex < index || index == -1)) {
+        index = operatorIndex
+      }
+    }
+
     if(index != -1) {
-      let result = operate(+equationInput[index - 1], +equationInput[index + 1], operator);
+      let result = operate(+equationInput[index - 1], +equationInput[index + 1], equationInput[index].toString());
 
       if(result != undefined) {
         equationInput[index + 1] = result;

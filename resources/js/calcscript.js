@@ -1,12 +1,16 @@
 "use strict";
-const operators = ['*', '/', '+', '-'];
-let inputField = document.getElementById("calculatorInputField");
-let outputField = document.getElementById("calculatorOutputField");
-let calculatorButtons = document.getElementsByClassName("btn");
-for (let calculatorButton of calculatorButtons) {
+var inputField = document.getElementById("calculatorInputField");
+var outputField = document.getElementById("calculatorOutputField");
+var calculatorButtons = document.getElementsByClassName("btn");
+var _loop_1 = function (calculatorButton) {
     calculatorButton.addEventListener("click", function () {
         updateInput(calculatorButton.dataset.action);
     });
+};
+// @ts-ignore
+for (var _i = 0, calculatorButtons_1 = calculatorButtons; _i < calculatorButtons_1.length; _i++) {
+    var calculatorButton = calculatorButtons_1[_i];
+    _loop_1(calculatorButton);
 }
 function updateInput(character) {
     switch (true) {
@@ -30,7 +34,7 @@ function updateOutput() {
     outputField.value = evaluateEquation(inputField.value.toString(), 3);
 }
 function clearScreen() {
-    inputField.value = "";
+    inputField.value = "Hi";
     outputField.value = "";
 }
 function add(number1, number2) {
@@ -63,20 +67,20 @@ function operate(number1, number2, operator) {
     }
 }
 function splitEquation(input) {
-    let equationArray = [];
-    let equationArrayIndex = 0;
-    for (const char of input) {
+    var operators = ['*', '/', '+', '-'];
+    var equationArray = [];
+    var equationArrayIndex = 0;
+    for (var _i = 0, input_1 = input; _i < input_1.length; _i++) {
+        var char = input_1[_i];
         if (operators.indexOf(char) != -1) {
             equationArray.push(char);
             equationArrayIndex += 2;
         }
+        else if (equationArray[equationArrayIndex] == undefined) {
+            equationArray.push(char);
+        }
         else {
-            if (equationArray[equationArrayIndex] == undefined) {
-                equationArray.push(char);
-            }
-            else {
-                equationArray[equationArrayIndex] += char;
-            }
+            equationArray[equationArrayIndex] += char;
         }
     }
     while (isNaN(+equationArray[equationArray.length - 1]) && equationArray.length >= 1) {
@@ -88,11 +92,19 @@ function evaluateEquation(equationInput, decimalLength) {
     if (typeof equationInput == "string") {
         return evaluateEquation(splitEquation(equationInput), decimalLength);
     }
-    let index = -1;
-    for (let operator of operators) {
-        index = equationInput.indexOf(operator);
+    var operatorOrder = [["*", "/"], ["+", "-"]];
+    var index = -1;
+    for (var _i = 0, operatorOrder_1 = operatorOrder; _i < operatorOrder_1.length; _i++) {
+        var operators = operatorOrder_1[_i];
+        for (var _a = 0, operators_1 = operators; _a < operators_1.length; _a++) {
+            var operator = operators_1[_a];
+            var operatorIndex = equationInput.indexOf(operator);
+            if (operatorIndex > 0 && (operatorIndex < index || index == -1)) {
+                index = operatorIndex;
+            }
+        }
         if (index != -1) {
-            let result = operate(+equationInput[index - 1], +equationInput[index + 1], operator);
+            var result = operate(+equationInput[index - 1], +equationInput[index + 1], equationInput[index].toString());
             if (result != undefined) {
                 equationInput[index + 1] = result;
                 equationInput.splice(index - 1, 2);
