@@ -11,38 +11,46 @@
     <script defer src="./resources/js/calcscript.js"></script>
   </head>
   <body>
-    <div class="calculator">
-      <div class="row-0">
-        <div id="calculatorInput">
-          <input type="text" id="calculatorInputField" name="Calculator Input" readonly>
+    <div class="container">
+      <div class="calculator">
+        <div class="screen">
+          <div id="calculatorInput">
+            <input type="text" id="calculatorInputField" name="Calculator Input" readonly>
+          </div>
+          <div id="calculatorOutput">
+            <input type="text" id="calculatorOutputField" name="Calculator Output" readonly>
+          </div>
         </div>
-        <div id="calculatorOutput">
-          <input type="text" id="calculatorOutputField" name="Calculator Output" readonly>
-        </div>
-      </div>
-      <div class="row-1">
-        <div class="calculatorNumber btn" name="7 Button" data-action="7">7</div>
-        <div class="calculatorNumber btn" name="8 Button" data-action="8">8</div>
-        <div class="calculatorNumber btn" name="9 Button" data-action="9">9</div>
-        <div class="calculatorOperator btn" name="division Button" data-action="/">&divide;</div>
-      </div>
-      <div class="row-2">
-        <div class="calculatorNumber btn" name="4 Button" data-action="4">4</div>
-        <div class="calculatorNumber btn" name="5 Button" data-action="5">5</div>
-        <div class="calculatorNumber btn" name="6 Button" data-action="6">6</div>
-        <div class="calculatorOperator btn" name="Multiplication Button" data-action="*">&times;</div>
-      </div>
-      <div class="row-3">
-        <div class="calculatorNumber btn" name="1 Button" data-action="1">1</div>
-        <div class="calculatorNumber btn" name="2 Button" data-action="2">2</div>
-        <div class="calculatorNumber btn" name="3 Button" data-action="3">3</div>
-        <div class="calculatorOperator btn" name="Subtraction Button" data-action="-">-</div>
-      </div>
-      <div class="row-4">
-        <div class="calculatorNumber btn" name="Dot Button" data-action=".">.</div>
-        <div class="calculatorNumber btn" name="0 Button" data-action="0">0</div>
-        <div class="calculatorNumber btn" name="Dot Button" data-action="del">DEL</div>
-        <div class="calculatorOperator btn" name="Addition Button" data-action="+">+</div>
+        <div class="buttons">
+          <div class="operatorColumn">
+            <div class="calculatorOperator btn" name="Delete Button" data-action="del">DEL</div>
+            <div class="calculatorOperator btn" name="Division Button" data-action="/">&divide;</div>
+            <div class="calculatorOperator btn" name="Multiplication Button" data-action="*">&times;</div>
+            <div class="calculatorOperator btn" name="Subtraction Button" data-action="-">-</div>
+            <div class="calculatorOperator btn" name="Addition Button" data-action="+">+</div>
+          </div>
+          <div class="row">
+            <div class="calculatorNumber btn" name="7 Button" data-action="7">7</div>
+            <div class="calculatorNumber btn" name="8 Button" data-action="8">8</div>
+            <div class="calculatorNumber btn" name="9 Button" data-action="9">9</div>
+          </div>
+          <div class="row">
+            <div class="calculatorNumber btn" name="4 Button" data-action="4">4</div>
+            <div class="calculatorNumber btn" name="5 Button" data-action="5">5</div>
+            <div class="calculatorNumber btn" name="6 Button" data-action="6">6</div>
+          </div>
+          <div class="row">
+            <div class="calculatorNumber btn" name="1 Button" data-action="1">1</div>
+            <div class="calculatorNumber btn" name="2 Button" data-action="2">2</div>
+            <div class="calculatorNumber btn" name="3 Button" data-action="3">3</div>
+          </div>
+          <div class="row">
+            <div class="calculatorNumber btn" name="0 Button" data-action="0">0</div>
+            <div class="calculatorNumber btn" name="Dot Button" data-action=".">.</div>
+            <div class="calculatorNumber btn" name="Equals Button" data-action="=">=</div>
+          </div>
+          
+        </div>    
       </div>
     </div>
   </body>

@@ -10,27 +10,27 @@ for(let calculatorButton of calculatorButtons) {
   });
 }
 
-function updateInput(character: string) {
-  if(character == 'del') {
-    inputField.value = inputField.value.slice(0, -1);
-    updateOutput();
-    return;
-  }
-  
-  if(isNaN(+character) && (isNaN(+inputField.value.slice(-1)) || inputField.value.length == 0)) {
-    return;
-  }
-
-  if(character == "0" && inputField.value.slice(-1) == "0") {
-    return;
-  }
-  
-  inputField.value += character;
-  updateOutput();
+function updateInput(character: string) {  
+  switch(true) {
+    case character == "del":
+      inputField.value = inputField.value.slice(0, -1);
+      updateOutput();
+      break;
+    case character == "=":
+      inputField.value = outputField.value;
+      updateOutput();
+      break;
+    case (isNaN(+character) && (isNaN(+inputField.value.slice(-1)) || inputField.value.length == 0)):
+    case (character == "0" && inputField.value.slice(-1) == "0"):
+      break;
+    default:
+        inputField.value += character;
+        updateOutput();
+  }  
 }
 
 function updateOutput() {
-  outputField.value = evaluateEquation(inputField.value.toString());
+  outputField.value = evaluateEquation(inputField.value.toString(), 3);
 }
 
 function clearScreen() {
@@ -97,9 +97,9 @@ function splitEquation(input: string): string[] {
   return equationArray;
 }
 
-function evaluateEquation(equationInput: (string|number)[] | string): string {
+function evaluateEquation(equationInput: (string|number)[] | string, decimalLength: number): string {
   if(typeof equationInput == "string") {
-    return evaluateEquation(splitEquation(equationInput));
+    return evaluateEquation(splitEquation(equationInput), decimalLength);
   }
 
   let index: number = -1;
@@ -114,12 +114,12 @@ function evaluateEquation(equationInput: (string|number)[] | string): string {
         equationInput[index + 1] = result;
         equationInput.splice(index - 1, 2);
         
-        return evaluateEquation(equationInput);
+        return evaluateEquation(equationInput, decimalLength);
       } else {
         return "Nice try"
       }
     }
   }
 
-  return (equationInput[0] == undefined) ? "" : equationInput[0].toString();
+  return (equationInput[0] == undefined) ? "" : (parseFloat((+equationInput[0]).toFixed(decimalLength))).toString();
 }

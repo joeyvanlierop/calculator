@@ -1,43 +1,114 @@
-:root {
-  --buttonSize: 5rem;
-}
-
 body {
   font-family: arial;
+  background-color: rgb(157, 228, 220);
 }
 
-html, body {
+html, body, .container {
   height: 100%;
 }
 
-.calculator {
-  display: inline-flex;
-  overflow: hidden;
-  flex-direction: column;
-  align-items: flex-start;
+.container {
+  display: flex;
   justify-content: center;
+  align-items: center;
+}
+
+.calculator {
+  width: 25em;
+  height: 35em;
+  flex-direction: column;
+  display: inline-flex;
+  border-radius: 1em;
+  overflow: hidden;
+  box-shadow: 0 .2em 1em rgba(0, 0, 0, .2);
+  -webkit-box-shadow: 0 .2em 1em rgba(0, 0, 0, .2);
+}
+
+.screen {
+  width: 100%;
+  height: 25%;
+  z-index: 2;
+  box-shadow: 0 .2em 4px -2px rgba(0, 0, 0, .2);
+  -webkit-box-shadow: 0 .2em 4px -2px rgba(0, 0, 0, .2);
+}
+
+.buttons {
+  width: 100%;
+  height: 75%;
+}
+
+.row, .operatorColumn {
+  display: inline-flex;
+}
+
+.row {
+  width: 75%;
+  height: 25%;
+}
+
+.operatorColumn {
+  flex-direction: column;
+  float: right;
+  width: 25%;
+  height: 100%;
 }
 
 .calculatorNumber, .calculatorOperator {
+  font-size: 20px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
   text-align: center;
   vertical-align: middle;
-  width: var(--buttonSize);
-  height: var(--buttonSize);
-  line-height: var(--buttonSize);
 }
 
 .calculatorNumber {
+  width: calc(100% / 3);
+  height: 100%;
   background-color: lightgray;
 }
 
 .calculatorOperator {
-  background-color: orange;
+  width: 100%;
+  height: 20%;
+  background-color: #ffc14e;
 }
 
-div[class^="row"] {
-  display: flex;
+.btn {
+  transition-duration: .4s;
 }
 
-input[type="text"] {
+.btn:hover {
+  filter: brightness(92%);
+}
+
+#calculatorInput, #calculatorOutput, #calculatorInputField, #calculatorOutputField {
+  width: 100%;
+  float: right;
+}
+
+#calculatorInputField, #calculatorOutputField {
+  box-sizing: border-box;
+  border: none;
+  caret-color: transparent;
   text-align: right;
+  height: 100%;
+  padding: 0 10%;
+  opacity: 0.8;
+}
+
+#calculatorInput {
+  height: 45%;
+}
+
+#calculatorOutput {
+  height: 55%;
+}
+
+#calculatorInputField {
+  font-size: 20px;
+}
+
+#calculatorOutputField {
+  font-size: 35px;
 }
